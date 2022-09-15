@@ -1,53 +1,42 @@
-const one = document.querySelector(".one");
-one.addEventListener('click', () => console.log(this));
 
-const two = document.querySelector(".two");
-two.addEventListener('click', () => console.log(this));
+let operand1 = "";
+let operator = "";
+let operand2 = "";
+let firstOp = true
 
-const three = document.querySelector(".three");
-three.addEventListener('click', () => console.log(this));
 
-const four = document.querySelector(".four");
-four.addEventListener('click', () => console.log(this));
+const simpInputs = Array.from(document.querySelectorAll('.simp-input'));
+simpInputs.forEach(input => input.addEventListener('click', (e) => numberInput(e)));
 
-const five = document.querySelector(".five");
-five.addEventListener('click', () => console.log(this));
+const operators = Array.from(document.querySelectorAll('.operator'));
+operators.forEach(input => input.addEventListener('click', (e) => operatorInput(e)));
 
-const six = document.querySelector(".six");
-six.addEventListener('click', () => console.log(this));
-
-const seven = document.querySelector(".seven");
-seven.addEventListener('click', () => console.log(this));
-
-const eight = document.querySelector(".eight");
-eight.addEventListener('click', () => console.log(this));
-
-const nine = document.querySelector(".nine");
-nine.addEventListener('click', () => console.log(this));
-
-const zero = document.querySelector(".zero");
-zero.addEventListener('click', () => console.log(this));
-
-const point = document.querySelector(".point");
-point.addEventListener('click', () => console.log(this));
-
-const clear = document.querySelector(".clear");
+const clear = document.querySelector('.clear');
 clear.addEventListener('click', () => console.log(this));
 
-const modulo = document.querySelector(".modulo");
-modulo.addEventListener('click', () => console.log(this));
-
-const divide = document.querySelector(".divide");
-divide.addEventListener('click', () => console.log(this));
-
-const multiply = document.querySelector(".multiply");
-multiply.addEventListener('click', () => console.log(this));
-
-const subtract = document.querySelector(".subtract");
-subtract.addEventListener('click', () => console.log(this));
-
-const plus = document.querySelector(".plus");
-plus.addEventListener('click', () => console.log(this));
-
-const equals = document.querySelector(".equals");
+const equals = document.querySelector('.equals');
 equals.addEventListener('click', () => console.log(this));
+
+const screen = document.querySelector('.screen');
+
+
+function numberInput(e) {
+    if (firstOp) {
+        operand1 += e.target.textContent;
+        screen.textContent = operand1;
+    } else {
+        operand2 += e.target.textContent;
+        screen.textContent = operand2;        
+    }
+};
+
+function operatorInput(e) {
+    operator = e.target.textContent;
+    firstOp = false;
+}
+
+function calculate() {
+    let o1 = Number(operand1);
+    let o2 = Number(operand2);
+}
+
