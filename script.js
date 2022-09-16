@@ -11,8 +11,8 @@ simpInputs.forEach(input => input.addEventListener('click', (e) => numberInput(e
 const operators = Array.from(document.querySelectorAll('.operator'));
 operators.forEach(input => input.addEventListener('click', (e) => operatorInput(e)));
 
-const clear = document.querySelector('#clear');
-clear.addEventListener('click', () => console.log(this));
+const clearBtn = document.querySelector('#clear');
+clearBtn.addEventListener('click', clear);
 
 const equals = document.querySelector('#equals');
 equals.addEventListener('click', calculate);
@@ -22,11 +22,25 @@ const screen = document.querySelector('.screen');
 
 function numberInput(e) {
     if (firstOp) {
-        operand1 += e.target.textContent;
-        screen.textContent = operand1;
+        if (e.target.textContent === "." && operand1.includes(".")) {
+            return;
+        } else {
+            if (operand1.split()[0] === "0") {
+                operand1 = operand1.split().shift().join('')
+            }
+            operand1 += e.target.textContent;
+            screen.textContent = operand1;    
+        }
     } else {
-        operand2 += e.target.textContent;
-        screen.textContent = operand2;        
+        if (e.target.textContent === "." && operand2.includes(".")) {
+            return;
+        } else {
+            if (operand2.split()[0] === "0") {
+                operand2 = operand2.split().shift().join('')
+            }
+            operand2 += e.target.textContent;
+            screen.textContent = operand2;    
+        }      
     }
 };
 
@@ -51,6 +65,11 @@ function calculate() {
         result = o1 % o2;
     }
     screen.textContent = result;
+}
 
+function clear() {
+    operand1 = 0;
+    operand2 = 0;
+    screen.textContent = "0"
 }
 
