@@ -17,36 +17,46 @@ clearBtn.addEventListener('click', clear);
 const equals = document.querySelector('#equals');
 equals.addEventListener('click', calculate);
 
-const screen = document.querySelector('.screen');
+const resultScreen = document.querySelector('.result-screen');
+const operatorScreen = document.querySelector('#operator-screen');
 
 
 function numberInput(e) {
     if (firstOp) {
-        if (e.target.textContent === "." && operand1.includes(".")) {
+        if (e.target.textContent === "0" && operand1 === "") {
+            return;
+        } else if (e.target.textContent === "." && operand1.includes(".")) {
             return;
         } else {
             if (operand1.split()[0] === "0") {
                 operand1 = operand1.split().shift().join('')
             }
             operand1 += e.target.textContent;
-            screen.textContent = operand1;    
+            resultScreen.textContent = operand1;    
         }
     } else {
-        if (e.target.textContent === "." && operand2.includes(".")) {
+        if (e.target.textContent === "0" && operand2 === "") {
+            return;
+        } else if (e.target.textContent === "." && operand2.includes(".")) {
             return;
         } else {
             if (operand2.split()[0] === "0") {
                 operand2 = operand2.split().shift().join('')
             }
             operand2 += e.target.textContent;
-            screen.textContent = operand2;    
+            resultScreen.textContent = operand2;    
         }      
     }
 };
 
 function operatorInput(e) {
+    if (operand2 != "") {
+        operand1 = calculate();
+        operand2 = ""
+    }
     operator = e.target.textContent;
     firstOp = false;
+    operatorScreen.textContent = operator
 }
 
 function calculate() {
@@ -64,12 +74,15 @@ function calculate() {
     } else if (operator === "%") {
         result = o1 % o2;
     }
-    screen.textContent = result;
+    resultScreen.textContent = result;
+    operatorScreen.textContent = ""
+    return result;
 }
 
 function clear() {
     operand1 = 0;
     operand2 = 0;
-    screen.textContent = "0"
+    resultScreen.textContent = "0"
+    operatorScreen.textContent = ""
 }
 
