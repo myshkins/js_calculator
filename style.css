@@ -13,7 +13,7 @@ body,html {
 .frame {
     display: flex;
     flex-direction: column;
-    padding: 1rem;
+    padding: 3rem;
     font-size: 2rem;
     max-width: 70rem;
 }
@@ -27,13 +27,19 @@ body,html {
     flex: 1;
     display: flex;
     padding: 1rem;
+    margin: 5px 2px;
     min-height: 3rem;
     min-width: 10rem;
-    background-color: rgb(236, 254, 255);
+    background-color: rgb(233, 246, 248);
     align-items: center;
     justify-content: right;
     font-size: 3rem;
-    margin: 2px;
+    border-width: 2px;
+    border-radius: 4px;
+    border-style: inset;
+    border-color: rgb(168, 215, 235);
+    /* outline: 4px rgb(168, 215, 235); */
+    filter: drop-shadow(1px 1px 1px rgb(24, 137, 182));
 }
 /* 
 span,.screen {
@@ -59,7 +65,7 @@ span,.screen {
     flex-direction: row;
 }
 
-.bottom-square-btn-container {
+.bottom-sqr-btn-container {
     flex: 3;
     display: flex;
     flex-direction: column;
@@ -77,23 +83,47 @@ span,.screen {
     flex-direction: row;
 }
 
-.btn-square {
+.square {
     flex: 1;
     display: flex;
     align-items: center;
     justify-content: center;
     min-width: 3px;
     aspect-ratio: 1 / 1;
-    background-color: rgb(143, 184, 202);
     margin: 2px;
+    border-radius: 4px;
 }
 
-.btn-rect {
+.rect {
     flex: 1;
     display: flex;
     align-items: center;
     justify-content: center;
     min-width: 3px;
-    background-color: rgb(143, 184, 202);
     margin: 2px;
+    border-radius: 4px;
+}
+
+.blue {
+    background-color: rgb(168, 215, 235);
+}
+
+#equals {
+    background-color: rgb(170, 183, 223);
+}
+
+.operator {
+    background-color: rgb(173, 223, 176)
+}
+
+.btn {
+    filter: drop-shadow(1px 1px 1px rgb(5, 115, 158));
+}
+
+.btn:hover {
+    filter: brightness(85%) drop-shadow(1px 1px 1px rgb(5, 115, 158));
+}
+
+#multiply, #subtract {
+    font-size: 2.5rem;
 }
