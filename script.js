@@ -22,30 +22,23 @@ const operatorScreen = document.querySelector('#operator-screen');
 
 
 function numberInput(e) {
+    function inputter(operand) {
+        if (e.target.textContent === "0" && operand === "") {
+            return;
+        } else if (e.target.textContent === "." && operand.includes(".")) {
+            return;
+        } else {
+            if (operand.split()[0] === "0") {
+                operand = operand.split().shift().join('')
+            }
+            operand += e.target.textContent;
+            resultScreen.textContent = operand;
+            return operand;  
+        }}; 
     if (firstOp) {
-        if (e.target.textContent === "0" && operand1 === "") {
-            return;
-        } else if (e.target.textContent === "." && operand1.includes(".")) {
-            return;
-        } else {
-            if (operand1.split()[0] === "0") {
-                operand1 = operand1.split().shift().join('')
-            }
-            operand1 += e.target.textContent;
-            resultScreen.textContent = operand1;    
-        }
+        operand1 = inputter(operand1);
     } else {
-        if (e.target.textContent === "0" && operand2 === "") {
-            return;
-        } else if (e.target.textContent === "." && operand2.includes(".")) {
-            return;
-        } else {
-            if (operand2.split()[0] === "0") {
-                operand2 = operand2.split().shift().join('')
-            }
-            operand2 += e.target.textContent;
-            resultScreen.textContent = operand2;    
-        }      
+        operand2 = inputter(operand2);   
     }
 };
 
@@ -74,14 +67,16 @@ function calculate() {
     } else if (operator === "%") {
         result = o1 % o2;
     }
+    operand1 = result
+    operand2 = ""
     resultScreen.textContent = result;
     operatorScreen.textContent = ""
     return result;
 }
 
 function clear() {
-    operand1 = 0;
-    operand2 = 0;
+    operand1 = "";
+    operand2 = "";
     resultScreen.textContent = "0"
     operatorScreen.textContent = ""
 }
