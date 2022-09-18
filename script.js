@@ -2,7 +2,8 @@
 let operand1 = "";
 let operator = "";
 let operand2 = "";
-let firstOp = true
+let firstOp = true;
+let eq_pressed = false;
 
 
 const simpInputs = Array.from(document.querySelectorAll('.simp-input'));
@@ -28,14 +29,19 @@ function numberInput(e) {
         } else if (e.target.textContent === "." && operand.includes(".")) {
             return;
         } else {
-            if (operand.split()[0] === "0") {
-                operand = operand.split().shift().join('')
-            }
+            // if (operand.split()[0] === "0") {
+            //     operand = operand.split().shift().join('') // remove a leading zero if there is one
+            // }
             operand += e.target.textContent;
             resultScreen.textContent = operand;
             return operand;  
         }}; 
-    if (firstOp) {
+
+    if (firstOp || eq_pressed) {
+        if (eq_pressed) {
+            operand1 = "";
+            eq_pressed = false;
+        }
         operand1 = inputter(operand1);
     } else {
         operand2 = inputter(operand2);   
@@ -71,6 +77,7 @@ function calculate() {
     operand2 = ""
     resultScreen.textContent = result;
     operatorScreen.textContent = ""
+    eq_pressed = true;
     return result;
 }
 
