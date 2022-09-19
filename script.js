@@ -54,7 +54,8 @@ function numberInput(input) {
 
     function inputter(operand) {
         if (input === "0" && operand === "") {
-            return;
+            operand = ""
+            return operand;
         } else if (input === "." && operand.includes(".")) {
             return;
         } else {
